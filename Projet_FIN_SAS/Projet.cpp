@@ -31,7 +31,7 @@ void afficherTache(Tache *T, int taille){
 }
 
 
-void ajouterTache(Tache *T, int *taille){
+void ajouterTache(Tache **T, int *taille){
 
 	Tache t;
 	
@@ -44,21 +44,21 @@ void ajouterTache(Tache *T, int *taille){
 	printf("Ecrire la date de création de sa Tache : \n");
 	
 	printf("Ecrire l'heur  : ");
-	scanf("%s", &t.date_x.heur);
+	scanf("%d", &t.date_x.heur);
 	
 	printf("Ecrire le jour : ");
-	scanf("%s", &t.date_x.jour);
+	scanf("%d", &t.date_x.jour);
 	
 	printf("Ecrire le moix : ");
-	scanf("%s", &t.date_x.mois);
+	scanf("%d", &t.date_x.mois);
 	
 	printf("Ecrire l'annee : ");
-	scanf("%s", &t.date_x.annee);
+	scanf("%d", &t.date_x.annee);
 	
 	printf("Ecrire la priorite de sa Tache : ");
 	scanf("%s", t.Pr);
 	
-	T[*taille]=t;
+	(*T)[*taille]=t;
     (*taille)++;
 		
 }

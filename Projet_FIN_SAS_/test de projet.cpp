@@ -52,36 +52,41 @@ int modfTache() {
                     case 1:
                         printf("Nom : ");
                         fgets(T[i].Nom, sizeof(T[i].Nom), stdin);
+                        printf("Modifier avec succès\n");
                         break;
                     case 2:
                         printf("Priorite : ");
                         fgets(T[i].Pr, sizeof(T[i].Pr), stdin);
+                        printf("Modifier avec succès\n");
                         break;
                     case 3:
                         printf("Description :");
                         fgets(T[i].Des, sizeof(T[i].Des), stdin);
+                        printf("Modifier avec succès\n");
                         break;
                     case 4:
                         printf("Jour : ");
                         scanf("%d", &T[i].date_x.jour);
+                        printf("Modifier avec succès\n");
                         break;
                     case 5:
                         printf("Mois : ");
                         scanf("%d", &T[i].date_x.mois);
+                        printf("Modifier avec succès\n");
                         break;
                     case 6:
                         printf("Annee : ");
                         scanf("%d", &T[i].date_x.annee);
+                        printf("Modifier avec succès\n");
                         break;
                     case 7:
                         printf("Quitter la modification\n");
-                        return 0;
+                        break;
                     default:
                         printf("\nVeuillez entrer un choix valide!\n");
+                        printf("Modifier avec succès\n");
                         break;
                 }
-                getchar();
-                printf("Modifier avec succès\n");
             }
         }
     }
@@ -89,7 +94,7 @@ int modfTache() {
     if (!tacheExiste) {
         printf("Cette Tache n'existe pas\n");
     }
-    
+    return 0;
 }
 
 
