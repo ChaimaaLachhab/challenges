@@ -138,6 +138,7 @@ void afficherTache( Tache T[], int taille) {
     }
 }
 
+//existe de tache
 int existeTache(char Nom[]){
 
     for (int i = 0; i < taille; i++) {
