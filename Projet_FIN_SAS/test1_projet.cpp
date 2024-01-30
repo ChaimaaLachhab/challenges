@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int taille = 0;
-
+// Déclaration des structures
 typedef struct {
     int jour;
     int mois;
@@ -13,31 +12,33 @@ typedef struct {
     char Nom[50];
     char Pr[20]; 
     char Des[100];
-    Date date_x;
+    Date date_x; // date de faire cette tache
 } Tache;
 
+// Déclaration des variables globales
 Tache T[500];
 Tache t;
+int taille = 0;
 
 int existeTache(char Nom[]) {
     for (int i = 0; i < taille; i++) {
         if (strcmp(T[i].Nom, Nom) == 0) {
-            printf("La tache existe deja dans la liste\n");
+            printf("\t");
             return 1;
         }
     }
     return 0;
 }
 
+//ajouter un tache
 void ajouterTache() {
-    getchar();
     printf("\nEcrire les informations de la tache \n");
 
     printf("Nom : ");
     scanf(" %49[^\n]", t.Nom); 
 
     if (existeTache(t.Nom) == 1) {
-        printf("\n");
+        printf("La tache existe deja dans la liste\n");
     } else {
         printf("Priorite (1: Necessaire, 2: Important, 3: Ordinaire) : ");
         int choixPriorite;
@@ -84,13 +85,14 @@ void ajouterTache() {
             printf("Donner un nombre juste : ");
             scanf("%d", &t.date_x.annee);
         }
-
+        
         T[taille] = t;
         taille++;
         printf("\n Ajouter avec succes\n");
     }
 }
 
+// affichage de taches
 void afficherTache(Tache T[], int taille) {
     if (taille == 0) {
         printf("AUCUNE TACHE EXISTE\n");
@@ -103,101 +105,98 @@ void afficherTache(Tache T[], int taille) {
     }
 }
 
+
+// modification de la tache
 int modfTache() {
-    getchar();
     printf("Ecrire le Nom de la tache a modifier\n");
     printf("Nom : ");
     scanf(" %49[^\n]", t.Nom); 
 
-    int tacheExiste = 0;
-    for (int i = 0; i < taille; i++) {
-        if (strcmp(T[i].Nom, t.Nom) == 0) {
-            tacheExiste = 1;
-            int choix_1;
-            do {
-                printf("\n");
-                printf("Tu peux changer quoi ?\n");
-                printf("1- Nom\n");
-                printf("2- Priorite\n");
-                printf("3- Description\n");
-                printf("4- Jour\n");
-                printf("5- Mois\n");
-                printf("6- Annee\n");
-                printf("7- Quitter la modification\n");
-                printf("\n Veuillez entrer votre choix : ");
-                scanf("%d", &choix_1);
+    if (existeTache(t.Nom) == 1) {
+        for (int i = 0; i < taille; i++) {
+            if (strcmp(T[i].Nom, t.Nom) == 0) {
+                int choix_1;
+                do {
+                    printf("\n");
+                    printf("Tu veux changer quoi ?\n");
+                    printf("1- Nom\n");
+                    printf("2- Priorite\n");
+                    printf("3- Description\n");
+                    printf("4- Jour\n");
+                    printf("5- Mois\n");
+                    printf("6- Annee\n");
+                    printf("7- Quitter la modification\n");
+                    printf("\n Veuillez entrer votre choix : ");
+                    scanf("%d", &choix_1);
 
-                switch (choix_1) {
-                    case 1:
-                        printf("NEW Nom : ");
-                        scanf(" %49[^\n]", T[i].Nom); 
-                        break;
-                    case 2:
-                        printf("NEW Priorite (1: Necessaire, 2: Important, 3: Ordinaire) : ");
-                        int choixPriorite;
-                        scanf("%d", &choixPriorite);
-                        switch (choixPriorite) {
-                            case 1:
-                                strcpy(T[i].Pr, "Necessaire");
-                                break;
-                            case 2:
-                                strcpy(T[i].Pr, "Important");
-                                break;
-                            case 3:
-                                strcpy(T[i].Pr, "Ordinaire");
-                                break;
-                            default:
-                                printf("Veuillez entrer une priorite valide !\n");
-                                break;
-                        }
-                        break;
-                    case 3:
-                        printf("NEW Description :");
-                        scanf(" %99[^\n]", T[i].Des); 
-                        break;
-                    case 4:
-                        printf("NEW Jour : ");
-                        scanf("%d", &T[i].date_x.jour);
-                        break;
-                    case 5:
-                        printf("NEW Mois : ");
-                        scanf("%d", &T[i].date_x.mois);
-                        break;
-                    case 6:
-                        printf("NEW Annee : ");
-                        scanf("%d", &T[i].date_x.annee);
-                        break;
-                    case 7:
-                        printf("Quitter la modification\n");
-                        break;
-                    default:
-                        printf("\nVeuillez entrer un choix valide!\n");
-                        break;
-                }
-                getchar();
-                printf("Modifier avec succes\n");
-            } while (choix_1 != 7);
+                    switch (choix_1) {
+                        case 1:
+                            printf("NEW Nom : ");
+                            scanf(" %49[^\n]", T[i].Nom); 
+                            break;
+                        case 2:
+                            printf("NEW Priorite (1: Necessaire, 2: Important, 3: Ordinaire) : ");
+                            int choixPriorite;
+                            scanf("%d", &choixPriorite);
+                            switch (choixPriorite) {
+                                case 1:
+                                    strcpy(T[i].Pr, "Necessaire");
+                                    break;
+                                case 2:
+                                    strcpy(T[i].Pr, "Important");
+                                    break;
+                                case 3:
+                                    strcpy(T[i].Pr, "Ordinaire");
+                                    break;
+                                default:
+                                    printf("Veuillez entrer une priorite valide !\n");
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            printf("NEW Description :");
+                            scanf(" %99[^\n]", T[i].Des); 
+                            break;
+                        case 4:
+                            printf("NEW Jour : ");
+                            scanf("%d", &T[i].date_x.jour);
+                            break;
+                        case 5:
+                            printf("NEW Mois : ");
+                            scanf("%d", &T[i].date_x.mois);
+                            break;
+                        case 6:
+                            printf("NEW Annee : ");
+                            scanf("%d", &T[i].date_x.annee);
+                            break;
+                        case 7:
+                            printf("Quitter la modification\n");
+                            break;
+                        default:
+                            printf("\nVeuillez entrer un choix valide!\n");
+                            break;
+                    }
+                    printf("Modifier avec succes\n");
+                } while (choix_1 != 7);
+            }
         }
-    }
-
-    if (!tacheExiste) {
+    }else {
         printf("Cette Tache n'existe pas\n");
     }
-
     return 0;
 }
 
-void suppTache() {
-    getchar();
-    printf("Ecrire les informations de la tache \n");
 
+// supprission  de tache
+void suppTache() {
+	
+    printf("Ecrire les informations de la tache \n");
     printf("Nom : ");
     scanf(" %49[^\n]", t.Nom); 
 
-    int tacheExiste = 0;
-    for (int i = 0; i < taille; i++) {
+    if (existeTache(t.Nom) == 1) {
+    	for (int i = 0; i < taille; i++) {
         if (strcmp(T[i].Nom, t.Nom) == 0) {
-            tacheExiste = 1;
 
             for (int j = i; j < taille - 1; j++) {
                 T[j] = T[j + 1];
@@ -206,9 +205,8 @@ void suppTache() {
             printf("Supprimer avec succes\n");
             break;
         }
-    }
-
-    if (!tacheExiste) {
+	}
+    } else {
         printf("Cette Tache n'existe pas\n");
     }
 }
@@ -270,16 +268,15 @@ void ordTache() {
                     printf("\nVeuillez entrer un choix valide!\n");
                     break;
             }
-
         }
-
     }
     printf("Ordonner avec succes\n");
     afficherTache(T, taille);
 }
 
+
+//fitrage des taches
 void filTache() {
-    getchar();
 
     int choix_3;
     printf("Tu veux filtrer par :\n");
@@ -288,44 +285,34 @@ void filTache() {
     printf("\nVeuillez entrer votre choix : ");
     scanf("%d", &choix_3);
 
-    int tacheExiste = 0;
-
     switch (choix_3) {
         case 1:
-            getchar();
             printf("Ecrire la priorite de la tache à afficher (Necessaire, Important, Ordinaire)\n");
             printf("Priorite : ");
-            scanf(" %19[^\n]", t.Pr); 
+            scanf(" %19[^\n]", t.Pr);
+			 
             for (int i = 0; i < taille; i++) {
                 if (strcmp(T[i].Pr, t.Pr) == 0) {
-                    tacheExiste = 1;
                     afficherTache(&T[i], 1);
                 }
             }
             break;
         case 2:
-            getchar();
             printf("Ecrire l'annee de la tache à afficher\n");
-            printf("Annee : ");
-
-            scanf("%d", &t.date_x.annee);
+            printf("Annee et Moix ");
+            scanf("%d %d", &t.date_x.annee, &t.date_x.mois);
 
             for (int i = 0; i < taille; i++) {
-                if (T[i].date_x.annee == t.date_x.annee) {
-                    tacheExiste = 1;
+                if (T[i].date_x.annee == t.date_x.annee && T[i].date_x.mois == t.date_x.mois) {
                     afficherTache(&T[i], 1);
                 }
-            }
+            } 
             break;
         default:
             printf("\nVeuillez entrer un choix valide!\n");
             break;
     }
-
-    if (!tacheExiste) {
-        printf("Aucune tache avec la priorite ou l'annee qui a été entrée\n");
-    }
-    printf("Filtrer avec succès\n");
+    printf("Filtrer avec succes\n");
 }
 
 void saveTaches() {
@@ -337,21 +324,26 @@ void saveTaches() {
     }
 
     fclose(fichier);
-    printf("Taches sauvegardées avec succès dans le fichier.\n");
+    printf("Taches sauvegardees avec succes dans le fichier.\n");
 }
 
 
 void chargerTaches() {
     FILE *fichier = fopen("Taches.txt", "r+");
-
-    while (fscanf(fichier, "La tache : \n Nom : %49[^\n] Priorite : %19[^\n] Description : %99[^\n] Date : %d/%d/%d\n",
-                  t.Nom, t.Pr, t.Des, &t.date_x.jour, &t.date_x.mois, &t.date_x.annee) == 6) {
-        T[taille] = t;
-        taille++;
-    }
+    
+    if (fichier==NULL){
+    	printf("AUCUNE TACHE EXISTE");
+    	return;
+	}else{
+        while (fscanf(fichier, "La tache : \n Nom : %49[^\n] Priorite : %19[^\n] Description : %99[^\n] Date : %d/%d/%d\n",
+                    t.Nom, t.Pr, t.Des, &t.date_x.jour, &t.date_x.mois, &t.date_x.annee) == 6) {
+            T[taille] = t;
+            taille++;
+        }
+	}
 
     fclose(fichier);
-    printf("Taches chargées avec succes depuis le fichier.\n");
+    printf("Taches chargees avec succes depuis le fichier.\n");
 }
 
 
@@ -401,4 +393,3 @@ int main() {
     }
     return 0;
 }
-

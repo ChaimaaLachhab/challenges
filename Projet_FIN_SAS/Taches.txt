@@ -1,6 +1,18 @@
 La tache: 
  Nom : M
+ Priorite : Necessaire
+ Description : DFVER HYTHEB
+ Date : 6/2/3 
+
+La tache: 
+ Nom : E
  Priorite : Important
- Description : 1NU UJNU
- Date : 6/7/2023 
+ Description : REF 
+ Date : 4/2/3 
+
+La tache: 
+ Nom : R
+ Priorite : Necessaire
+ Description : DSCD ERVF
+ Date : 4/3/7 
 
